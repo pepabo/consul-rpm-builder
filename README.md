@@ -25,3 +25,10 @@ $ docker run consul-rpm-builder/consul:0.5.0 rpm -qlp /var/tmp/consul.rpm
 ```bash
 $ docker run consul-rpm-builder/consul:0.5.0 /bin/bash -c 'yum -y install /var/tmp/consul.rpm && consul version'
 ```
+
+### Available components and versions
+
+- consul:0.4.1
+- consul:0.5.0
+- consul-web_ui:0.4.1
+- consul-web_ui:0.5.0
