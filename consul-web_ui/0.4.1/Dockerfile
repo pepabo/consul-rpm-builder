@@ -22,7 +22,7 @@ RUN fpm -s dir -t rpm -n consul-web_ui -v ${CONSUL_VERSION} -p /var/tmp/consul-w
     --iteration $(date +%s) \
     --epoch $RPM_EPOCH \
     --url https://www.consul.io/ \
-    --description "Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable." \
+    --description "Consul Web UI - Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable." \
     --maintainer "Uchio KONDO <udzura@udzura.jp>" \
     --license "MPLv2.0" \
     --vendor "hashicorp" -a amd64 \
