@@ -1,17 +1,14 @@
-FROM centos:7
+FROM consul-rpm-builder-base:latest
 
 ENV CONSUL_VERSION 0.5.0
 ENV RPM_EPOCH 1
-RUN yum -y update
-RUN yum -y install curl git unzip \
-    ruby rubygem-bundler ruby-devel \
-    gcc make rpm-build
-RUN gem install fpm --no-rdoc --no-ri
 
 RUN mkdir -p /rootfs/var/consul/data \
              /rootfs/etc/consul.d \
              /rootfs/usr/bin
 ADD default.json /rootfs/etc/consul.json
+ADD postinst.rpm /usr/local/bin/postinst.sh
+
 RUN curl -L http://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_linux_amd64.zip > /usr/local/src/consul-${CONSUL_VERSION}_linux_amd64.zip
 RUN unzip -o -u /usr/local/src/consul-${CONSUL_VERSION}_linux_amd64.zip -d /rootfs/usr/bin
 
@@ -19,6 +16,7 @@ RUN fpm -s dir -t rpm -n consul -v ${CONSUL_VERSION} -p /var/tmp/consul.rpm \
     --rpm-compression bzip2 --rpm-os linux \
     --force \
     --iteration $(date +%s) \
+    --after-install /usr/local/bin/postinst.sh \
     --epoch $RPM_EPOCH \
     --url https://www.consul.io/ \
     --description "Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable." \
