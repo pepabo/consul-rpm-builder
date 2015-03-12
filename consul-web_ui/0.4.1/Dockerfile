@@ -1,6 +1,7 @@
 FROM centos:7
 
 ENV CONSUL_VERSION 0.4.1
+ENV CONSUL_RELEASE pb-2
 ENV RPM_EPOCH 1
 RUN yum -y update
 RUN yum -y install curl git unzip \
@@ -10,6 +11,7 @@ RUN gem install fpm --no-rdoc --no-ri
 
 RUN mkdir -p /rootfs/var/consul/web_ui
 RUN curl -L http://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_web_ui.zip > /usr/local/src/consul-${CONSUL_VERSION}_web_ui.zip
+ADD postinst.rpm /usr/local/bin/postinst.sh
 
 WORKDIR /usr/local/src
 RUN unzip -o -u consul-${CONSUL_VERSION}_web_ui.zip && mv dist/* /rootfs/var/consul/web_ui
@@ -19,7 +21,8 @@ WORKDIR /
 RUN fpm -s dir -t rpm -n consul-web_ui -v ${CONSUL_VERSION} -p /var/tmp/consul-web_ui.rpm \
     --rpm-compression bzip2 --rpm-os linux \
     --force \
-    --iteration $(date +%s) \
+    --iteration $CONSUL_RELEASE \
+    --after-install /usr/local/bin/postinst.sh \
     --epoch $RPM_EPOCH \
     --url https://www.consul.io/ \
     --description "Consul Web UI - Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable." \

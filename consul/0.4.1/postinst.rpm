@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+if ! id consul; then
+    useradd -d /var/consul -s /sbin/nologin consul
+fi
+
+chmod 775 /usr/bin/consul
+chown -R consul:consul /var/consul /etc/consul.d /etc/consul.json
