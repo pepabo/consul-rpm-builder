@@ -1,0 +1,7 @@
+FROM centos:7
+
+RUN yum -y update
+RUN yum -y install curl git unzip \
+    ruby rubygem-bundler ruby-devel \
+    gcc make rpm-build
+RUN gem install fpm --no-rdoc --no-ri

@@ -8,3 +8,5 @@ fi
 
 chmod 775 /usr/bin/consul
 chown -R consul:consul /var/consul /etc/consul.d /etc/consul.json
+
+exit 0

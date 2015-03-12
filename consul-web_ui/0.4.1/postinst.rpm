@@ -7,3 +7,5 @@ if ! id consul; then
 fi
 
 chown -R consul:consul /var/consul/web_ui
+
+exit 0
