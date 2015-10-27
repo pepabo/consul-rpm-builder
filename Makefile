@@ -10,4 +10,4 @@ all: compile-all
 	find */* -type d | while read dname; do docker run consul-rpm-builder/"$${dname/\//:}" > tmp/"$${dname/\//-}".x86_64.rpm ;done
 
 test: compile-all
-	find */* -type d | while read dname; do ( docker run consul-rpm-builder/"$${dname/\//:}" rpm -qlp /var/tmp/consul*.rpm ) && echo OK ; done
+	find */* -type d | while read dname; do ( docker run consul-rpm-builder/"$${dname/\//:}" rpm -qlip /var/tmp/consul*.rpm ) && echo OK ; done
