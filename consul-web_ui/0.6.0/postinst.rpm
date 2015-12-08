@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if ! id consul; then
+    useradd -d /var/consul -s /sbin/nologin consul
+fi
+
+chown -R consul:consul /var/consul/web_ui
+
+exit 0
