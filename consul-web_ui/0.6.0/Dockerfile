@@ -8,7 +8,7 @@ RUN curl -L https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CON
 ADD postinst.rpm /usr/local/bin/postinst.sh
 
 WORKDIR /usr/local/src
-RUN unzip -o -u consul-${CONSUL_VERSION}_web_ui.zip && mv dist/* /rootfs/var/consul/web_ui
+RUN unzip -o -u consul-${CONSUL_VERSION}_web_ui.zip && mv index.html static /rootfs/var/consul/web_ui
 
 WORKDIR /
 
