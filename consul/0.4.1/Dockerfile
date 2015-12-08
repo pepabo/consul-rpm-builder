@@ -9,7 +9,7 @@ RUN mkdir -p /rootfs/var/consul/data \
 ADD default.json /rootfs/etc/consul.json
 ADD postinst.rpm /usr/local/bin/postinst.sh
 
-RUN curl -L http://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_linux_amd64.zip > /usr/local/src/consul-${CONSUL_VERSION}_linux_amd64.zip
+RUN curl -L https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /usr/local/src/consul-${CONSUL_VERSION}_linux_amd64.zip
 RUN unzip -o -u /usr/local/src/consul-${CONSUL_VERSION}_linux_amd64.zip -d /rootfs/usr/bin
 
 RUN fpm -s dir -t rpm -n consul -v ${CONSUL_VERSION} -p /var/tmp/consul.rpm \

@@ -4,7 +4,7 @@ ENV CONSUL_VERSION 0.4.1
 ENV RPM_EPOCH 1
 
 RUN mkdir -p /rootfs/var/consul/web_ui
-RUN curl -L http://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_web_ui.zip > /usr/local/src/consul-${CONSUL_VERSION}_web_ui.zip
+RUN curl -L https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_web_ui.zip > /usr/local/src/consul-${CONSUL_VERSION}_web_ui.zip
 ADD postinst.rpm /usr/local/bin/postinst.sh
 
 WORKDIR /usr/local/src
