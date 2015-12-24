@@ -3,7 +3,7 @@
 set -e
 
 if ! id consul; then
-    useradd -d /var/consul -s /sbin/nologin consul
+    useradd -d /var/consul consul
 fi
 
 chown -R consul:consul /var/consul/web_ui
