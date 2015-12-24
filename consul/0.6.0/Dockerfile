@@ -1,7 +1,7 @@
 FROM consul-rpm-builder-base:latest
 
 ENV CONSUL_VERSION 0.6.0
-ENV RPM_EPOCH 1
+ENV RPM_EPOCH 2
 
 RUN mkdir -p /rootfs/var/consul/data \
     /rootfs/etc/consul.d \
@@ -15,7 +15,7 @@ RUN unzip -o -u /usr/local/src/consul-${CONSUL_VERSION}_linux_amd64.zip -d /root
 RUN fpm -s dir -t rpm -n consul -v ${CONSUL_VERSION} -p /var/tmp/consul.rpm \
     --rpm-compression bzip2 --rpm-os linux \
     --force \
-    --iteration $(date +%s) \
+    --iteration $(date +%Y%m%d) \
     --after-install /usr/local/bin/postinst.sh \
     --epoch $RPM_EPOCH \
     --url https://www.consul.io/ \
