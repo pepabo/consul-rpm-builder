@@ -3,6 +3,9 @@
 ## How to build
 
 ```bash
+# create base image
+$ make base
+
 # please choose version
 $ docker build --no-cache -t consul-rpm-builder/consul:0.5.0 consul/0.5.0
 $ docker run consul-rpm-builder/consul:0.5.0 > tmp/consul-0.5.0.x86_64.rpm
