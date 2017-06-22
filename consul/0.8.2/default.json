@@ -1,0 +1,5 @@
+{
+  "datacenter": "aws-tokyo",
+  "data_dir": "/var/consul/data",
+  "log_level": "INFO"
+}
