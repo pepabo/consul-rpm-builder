@@ -1,0 +1,5 @@
+sudo: required
+services: docker
+script: bash ./run.sh
+env:
+  - VERSION=0.8.4
