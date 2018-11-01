@@ -44,6 +44,7 @@ $ docker run consul-rpm-builder/consul:1.2.0 /bin/bash -c 'yum -y install /var/t
 - consul:0.8.3
 - consul:0.8.4
 - consul:1.2.0
+- consul:1.3.0
 - consul-web_ui:0.4.1
 - consul-web_ui:0.5.0
 - consul-web_ui:0.6.0
